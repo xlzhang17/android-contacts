@@ -66,7 +66,7 @@ public class TestActivity2 extends AppCompatActivity {
             }
         });
 
-        /* \TODO 卡片切换 同步照片切换*/
+        /* \ 卡片切换 同步照片切换*/
         mPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int i, float v, int i1) {
@@ -75,8 +75,7 @@ public class TestActivity2 extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int i) {
-                mGallery.getAdapter().getItem(i);
-
+                mGallery.setSelection(i);
             }
 
             @Override
