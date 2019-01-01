@@ -41,6 +41,13 @@ public class ContactLab {
         }
     }
 
+    public int[] getImages(){
+        int[] images = new int[mContacts.size()];
+        for (int i = 0; i < mContacts.size(); i++){
+            images[i] = mContacts.get(i).getImage();
+        }
+        return images;
+    }
     public static ContactLab get(Context c) {
         if (sContactLab == null)
             sContactLab = new ContactLab(c.getApplicationContext());
