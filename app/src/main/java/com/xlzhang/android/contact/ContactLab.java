@@ -27,7 +27,7 @@ public class ContactLab {
     private ContactLab(Context appContext) {
         mAppContext = appContext;
         mContacts = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 3; i++) {
             for (int j = 0; j < imageLab.length; j++){
                 Contact c = new Contact();
                 c.setImage(imageLab[j]);

@@ -2,6 +2,8 @@ package com.xlzhang.android.contact;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -42,6 +44,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 //                parentView.scrollBy(rb_px - screenWidth / 2, 0);
 //            }
 //        });
+
         return holder;
     }
 
@@ -49,9 +52,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(@NonNull RecyclerViewHolder recyclerViewHolder, int i) {
         Contact contact = mContacts.get(i);
         ((ImageView)recyclerViewHolder.mImageView).setImageResource(contact.getImage());
-        recyclerViewHolder.mImageView.getLayoutParams().height = 100;
-        recyclerViewHolder.mImageView.getLayoutParams().width = 100;
-        recyclerViewHolder.mImageView.invalidate();
+        if(i == 0){
+
+        }
     }
 
     @Override

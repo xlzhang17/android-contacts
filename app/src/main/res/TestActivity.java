@@ -130,7 +130,6 @@ public class TestActivity extends AppCompatActivity {
             super(c, 0, mContacts);
             mContext = c;
         }
-
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             if(convertView == null)
