@@ -3,6 +3,7 @@ package com.xlzhang.android.contact;
 import android.annotation.TargetApi;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -19,6 +20,7 @@ import android.widget.Gallery;
 import android.widget.ImageView;
 
 import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 
@@ -28,6 +30,7 @@ public class TestActivity2 extends AppCompatActivity {
     private static final String IMAGE_DIR = "/Users/xlzhang/AndroidStudioProjects/Contact-2/app/src/main/res/drawable/avatars/";
     private ArrayList<Contact> mContacts;   //获取模型对象
     private String[] mImages;
+//    private int[] mImages;
 
     private Gallery mGallery;  //管理顶部照片墙
     private VerticalViewPager mPager;
@@ -64,9 +67,10 @@ public class TestActivity2 extends AppCompatActivity {
             public View getView(int position, View convertView, ViewGroup parent) {
                 View v = new ImageView(mGallery.getContext());
                 try {
-                    File imgFile = new File(IMAGE_DIR + mImages[position]);
-                    Bitmap bm = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-                    ((ImageView) v).setImageBitmap(bm);
+                    /*\加载图片 */
+                    InputStream in = getAssets().open(mImages[position]);
+                    Drawable d = Drawable.createFromStream(in, null);
+                    ((ImageView) v).setImageDrawable(d);
                 } catch (Exception e) {
                     Log.e(TAG, "Exception:", e);
                 }
