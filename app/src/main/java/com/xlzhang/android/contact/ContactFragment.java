@@ -45,13 +45,13 @@ public class ContactFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
         View v = inflater.inflate(R.layout.fragment_contact, container, false);
         mNameField = v.findViewById(R.id.contact_list_item_name);
-        mNameField.setText(mContact.getName());
+        mNameField.setText(mContact.getFirstName());
         mLocatField = v.findViewById(R.id.contact_list_item_location);
-        mLocatField.setText(mContact.getLocation());
+        mLocatField.setText(mContact.getLastName());
         mOccupField = v.findViewById(R.id.contact_list_item_occupation);
-        mOccupField.setText(mContact.getOccupation());
+        mOccupField.setText(mContact.getTitle());
         mDescripField = v.findViewById(R.id.contact_list_item_description);
-        mDescripField.setText(mContact.getDiscription());
+        mDescripField.setText(mContact.getIntroduction());
         return v;
     }
 }

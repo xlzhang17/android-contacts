@@ -1,53 +1,68 @@
 package com.xlzhang.android.contact;
 
 import android.content.Context;
+import android.util.Log;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONTokener;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.UUID;
 
 public class ContactLab {
+    private static final String TAG = "ContactLab";
     private static ContactLab sContactLab;
     private Context mAppContext;
     private ArrayList<Contact> mContacts;
 
-    private int[] imageLab = {
-            R.mipmap.ic_launcher_round,
-            R.mipmap.image6,
-            R.mipmap.images,
-            R.mipmap.image10,
-            R.mipmap.images2,
-            R.mipmap.images4,
-            R.mipmap.images12,
-            R.mipmap.images14,
-            R.mipmap.images16,
-            R.mipmap.images18,
-            R.mipmap.images20
-    };
-
     private ContactLab(Context appContext) {
         mAppContext = appContext;
-        mContacts = new ArrayList<>();
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < imageLab.length; j++){
-                Contact c = new Contact();
-                c.setImage(imageLab[j]);
-                c.setName("name #" + i * imageLab.length + j);
-                c.setLocation("Road #A" + i * imageLab.length + j);
-                c.setOccupation("Teacher #" + i * imageLab.length + j);
-                c.setDiscription("I'm NO." + i * imageLab.length + j);
-                mContacts.add(c);
-            }
-
+        try {
+            mContacts = loadContacts();
+        }catch (Exception e){
+            mContacts = new ArrayList<>();
+            Log.e(TAG,"Error loading Contacts:", e);
         }
     }
 
-    public int[] getImages(){
-        int[] images = new int[mContacts.size()];
-        for (int i = 0; i < mContacts.size(); i++){
-            images[i] = mContacts.get(i).getImage();
+    private ArrayList<Contact> loadContacts() throws IOException, JSONException {
+        ArrayList<Contact> contacts = new ArrayList<>();
+        BufferedReader reader = null;
+        try {
+            InputStream input = mAppContext.getResources().openRawResource(R.raw.contacts);
+            reader = new BufferedReader(new InputStreamReader(input));
+            StringBuilder jsonString = new StringBuilder();
+            String line = null;
+            while ((line = reader.readLine()) != null) {
+                jsonString.append(line);
+            }
+            JSONArray array = (JSONArray) new JSONTokener(jsonString.toString()).nextValue();
+            for (int i = 0; i < array.length(); i++) {
+                contacts.add(new Contact(array.getJSONObject(i)));
+            }
+        } catch (FileNotFoundException e) {
+            Log.e(TAG, "Error File:", e);
+        } finally {
+            if (reader != null)
+                reader.close();
+        }
+        return contacts;
+    }
+
+    public String[] getImages() {
+        String[] images = new String[mContacts.size()];
+        for (int i = 0; i < mContacts.size(); i++) {
+            images[i] = mContacts.get(i).getImageFile();
         }
         return images;
     }
+
     public static ContactLab get(Context c) {
         if (sContactLab == null)
             sContactLab = new ContactLab(c.getApplicationContext());

@@ -1,67 +1,82 @@
 package com.xlzhang.android.contact;
 
+import android.content.Context;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.UUID;
 
 public class Contact {
+    private static final String JSON_FIRSTNAME = "first_name";
+    private static final String JSON_LASTNAME = "last_name";
+    private static final String JSON_IMAGE = "avatar_filename";
+    private static final String JSON_TITLE = "title";
+    private static final String JSON_INTRODUCTION = "introduction";
+
     private UUID mId;
-    private int mImage;
 
-    public int getImage() {
-        return mImage;
-    }
-
-    public void setImage(int image) {
-        mImage = image;
-    }
-
-    private String mName;
-    private String mLocation;
-    private String mOccupation;
-    private String mDiscription;
+    private String mFirstName;
+    private String mLastName;
+    private String mImageFile;
+    private String mTitle;
+    private String mIntroduction;
 
     public Contact(){
         mId = UUID.randomUUID();
     }
 
-    @Override
-    public String toString() {
-        return mName;
+    public Contact(JSONObject jsonObject) throws JSONException {
+        mId = UUID.randomUUID();
+        if(jsonObject.has(JSON_FIRSTNAME))
+            mFirstName = jsonObject.getString(JSON_FIRSTNAME);
+        mLastName = jsonObject.getString(JSON_LASTNAME);
+        mImageFile = jsonObject.getString(JSON_IMAGE);
+        mTitle = jsonObject.getString(JSON_TITLE);
+        mIntroduction = jsonObject.getString(JSON_INTRODUCTION);
     }
 
     public UUID getId() {
         return mId;
     }
 
-    public String getName() {
-        return mName;
+    public String getImageFile() {
+        return mImageFile;
     }
 
-    public void setName(String name) {
-        mName = name;
+    public void setImage(String imageFile) {
+        mImageFile = imageFile;
     }
 
-    public String getLocation() {
-        return mLocation;
+    public String getFirstName() {
+        return mFirstName;
     }
 
-    public void setLocation(String location) {
-        mLocation = location;
+    public void setFirstName(String firstName) {
+        mFirstName = firstName;
     }
 
-    public String getOccupation() {
-        return mOccupation;
+    public String getLastName() {
+        return mLastName;
     }
 
-    public void setOccupation(String occupation) {
-        mOccupation = occupation;
+    public void setLastName(String lastName) {
+        mLastName = lastName;
     }
 
-    public String getDiscription() {
-        return mDiscription;
+    public String getTitle() {
+        return mTitle;
     }
 
-    public void setDiscription(String discription) {
-        mDiscription = discription;
+    public void setTitle(String title) {
+        mTitle = title;
     }
 
+    public String getIntroduction() {
+        return mIntroduction;
+    }
+
+    public void setIntroduction(String introduction) {
+        mIntroduction = introduction;
+    }
 }
