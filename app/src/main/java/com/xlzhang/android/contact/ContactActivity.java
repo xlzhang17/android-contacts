@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -58,6 +59,8 @@ public class ContactActivity extends AppCompatActivity {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
                 View v = new ImageView(mGallery.getContext());
+                v.setLayoutParams(new Gallery.LayoutParams(160, 160));
+                v.setPadding(10, 30, 10, 10);
                 try {
                     /*\加载图片 */
                     InputStream in = getAssets().open(mImages[position]);
@@ -91,14 +94,12 @@ public class ContactActivity extends AppCompatActivity {
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                mPager.setCurrentItem(position);
+
                 /*\ 被选择的照片高亮*/
                 if (preSelectedView != null)
                     preSelectedView.setBackgroundResource(android.R.color.transparent);
                 preSelectedView = view;
-                view.setPadding(10, 10, 10, 10);
-                view.setBackgroundResource(R.drawable.ic_launcher_background);
-
-                mPager.setCurrentItem(position);
             }
 
             @Override
