@@ -1,5 +1,3 @@
 <resources>
     <string name="app_name">Contacts</string>
-    <string name="title_contact_activity"></string>
-    <string name="contacts_title">Contacts</string>
 </resources>

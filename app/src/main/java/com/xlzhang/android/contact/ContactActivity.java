@@ -1,8 +1,5 @@
 package com.xlzhang.android.contact;
 
-import android.annotation.TargetApi;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -19,18 +16,13 @@ import android.widget.BaseAdapter;
 import android.widget.Gallery;
 import android.widget.ImageView;
 
-import java.io.File;
 import java.io.InputStream;
 import java.util.ArrayList;
 
-
-@TargetApi(26)
-public class TestActivity2 extends AppCompatActivity {
+public class ContactActivity extends AppCompatActivity {
     private static final String TAG = "TestActivity";
-    private static final String IMAGE_DIR = "/Users/xlzhang/AndroidStudioProjects/Contact-2/app/src/main/res/drawable/avatars/";
     private ArrayList<Contact> mContacts;   //获取模型对象
     private String[] mImages;
-//    private int[] mImages;
 
     private Gallery mGallery;  //管理顶部照片墙
     private VerticalViewPager mPager;
