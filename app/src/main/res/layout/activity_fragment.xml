@@ -8,15 +8,15 @@
         android:id="@+id/contactGallery"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
-    </Gallery>
+        android:layout_weight="1"
+        android:layout_marginTop="14dp"
+        android:layout_marginBottom="6dp"/>
 
     <com.xlzhang.android.contact.VerticalViewPager
         android:id="@+id/contactDetail"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="5">
+        android:layout_weight="5" />
 
-    </com.xlzhang.android.contact.VerticalViewPager>
 
 </LinearLayout>

@@ -1,5 +1,7 @@
 package com.xlzhang.android.contact;
 
+import android.app.ActionBar;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,6 +18,8 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Gallery;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Toolbar;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -39,7 +43,7 @@ public class ContactActivity extends AppCompatActivity {
 
         /*\ 展示照片墙*/
         mGallery = findViewById(R.id.contactGallery);
-        mGallery.setSpacing(1);
+        mGallery.setSpacing(22);
         mGallery.setAdapter(new BaseAdapter() {
             @Override
             public int getCount() {
@@ -59,8 +63,8 @@ public class ContactActivity extends AppCompatActivity {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
                 View v = new ImageView(mGallery.getContext());
-                v.setLayoutParams(new Gallery.LayoutParams(160, 160));
-                v.setPadding(10, 30, 10, 10);
+                v.setLayoutParams(new Gallery.LayoutParams(140, 140));
+                v.setPadding(10, 0, 10, 0);
                 try {
                     /*\加载图片 */
                     InputStream in = getAssets().open(mImages[position]);
@@ -100,6 +104,7 @@ public class ContactActivity extends AppCompatActivity {
                 if (preSelectedView != null)
                     preSelectedView.setBackgroundResource(android.R.color.transparent);
                 preSelectedView = view;
+                view.setBackgroundResource(R.drawable.image_border_settings);
             }
 
             @Override
