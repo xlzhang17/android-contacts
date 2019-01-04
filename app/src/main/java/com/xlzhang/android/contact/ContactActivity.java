@@ -1,15 +1,13 @@
 package com.xlzhang.android.contact;
 
-import android.app.ActionBar;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -18,8 +16,6 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Gallery;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.Toolbar;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -35,7 +31,10 @@ public class ContactActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fragment);
+        setContentView(R.layout.activity_contact);
+
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.action_bar_contact);
 
         /*\ 获取模型对象*/
         mContacts = ContactLab.get(this).getContacts();
@@ -127,7 +126,7 @@ public class ContactActivity extends AppCompatActivity {
 
             @Override
             public void onPageScrollStateChanged(int i) {
-
+//                mGallery.scrollBy(i / mPager.getMeasuredHeight() * 160, 0);
             }
         });
     }
