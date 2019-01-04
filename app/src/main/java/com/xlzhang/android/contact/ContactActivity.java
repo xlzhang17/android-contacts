@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -30,7 +31,11 @@ public class ContactActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fragment);
+        setContentView(R.layout.activity_contact);
+
+        /*\修改顶部ActionBar*/
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.action_bar_contact);
 
         /*\ 获取模型对象*/
         mContacts = ContactLab.get(this).getContacts();
@@ -38,7 +43,7 @@ public class ContactActivity extends AppCompatActivity {
 
         /*\ 展示照片墙*/
         mGallery = findViewById(R.id.contactGallery);
-        mGallery.setSpacing(1);
+        mGallery.setSpacing(22);
         mGallery.setAdapter(new BaseAdapter() {
             @Override
             public int getCount() {
@@ -58,6 +63,8 @@ public class ContactActivity extends AppCompatActivity {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
                 View v = new ImageView(mGallery.getContext());
+                v.setLayoutParams(new Gallery.LayoutParams(140, 140));
+                v.setPadding(10, 0, 10, 0);
                 try {
                     /*\加载图片 */
                     InputStream in = getAssets().open(mImages[position]);
@@ -91,14 +98,13 @@ public class ContactActivity extends AppCompatActivity {
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                mPager.setCurrentItem(position);
+
                 /*\ 被选择的照片高亮*/
                 if (preSelectedView != null)
                     preSelectedView.setBackgroundResource(android.R.color.transparent);
                 preSelectedView = view;
-                view.setPadding(10, 10, 10, 10);
-                view.setBackgroundResource(R.drawable.ic_launcher_background);
-
-                mPager.setCurrentItem(position);
+                view.setBackgroundResource(R.drawable.image_border_settings);
             }
 
             @Override
@@ -121,7 +127,7 @@ public class ContactActivity extends AppCompatActivity {
 
             @Override
             public void onPageScrollStateChanged(int i) {
-
+//                mGallery.scrollBy(i / mPager.getMeasuredHeight() * 160, 0);
             }
         });
     }

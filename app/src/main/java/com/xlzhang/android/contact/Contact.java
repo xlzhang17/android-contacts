@@ -8,8 +8,8 @@ import org.json.JSONObject;
 import java.util.UUID;
 
 public class Contact {
-    private static final String JSON_FIRSTNAME = "first_name";
-    private static final String JSON_LASTNAME = "last_name";
+    private static final String JSON_FIRST_NAME = "first_name";
+    private static final String JSON_LAST_NAME = "last_name";
     private static final String JSON_IMAGE = "avatar_filename";
     private static final String JSON_TITLE = "title";
     private static final String JSON_INTRODUCTION = "introduction";
@@ -28,9 +28,9 @@ public class Contact {
 
     public Contact(JSONObject jsonObject) throws JSONException {
         mId = UUID.randomUUID();
-        if(jsonObject.has(JSON_FIRSTNAME))
-            mFirstName = jsonObject.getString(JSON_FIRSTNAME);
-        mLastName = jsonObject.getString(JSON_LASTNAME);
+        if(jsonObject.has(JSON_FIRST_NAME))
+            mFirstName = jsonObject.getString(JSON_FIRST_NAME);
+        mLastName = jsonObject.getString(JSON_LAST_NAME);
         mImageFile = jsonObject.getString(JSON_IMAGE);
         mTitle = jsonObject.getString(JSON_TITLE);
         mIntroduction = jsonObject.getString(JSON_INTRODUCTION);

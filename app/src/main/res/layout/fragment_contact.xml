@@ -3,13 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="10dp">
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingTop="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="20dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingBottom="20dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -17,27 +19,29 @@
             android:layout_gravity="center">
 
             <TextView
-                android:id="@+id/contact_list_item_location"
+                android:id="@+id/contact_first_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
+                android:paddingRight="4dp"
+                android:paddingBottom="0dp"
                 android:text="first_name"
-                android:textSize="24dp"
+                android:textSize="22dp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/contact_list_item_name"
+                android:id="@+id/contact_last_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="last_name"
-                android:textSize="24dp" />
+                android:textSize="22dp" />
         </LinearLayout>
 
         <TextView
-            android:id="@+id/contact_list_item_occupation"
+            android:id="@+id/contact_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:textColor="#a6a4a4"
             android:text="title" />
 
     </LinearLayout>
@@ -49,11 +53,11 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/contact_list_item_description"
+        android:id="@+id/contact_introduction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorGray"
+        android:textColor="#a6a4a4"
+        android:textSize="14dp"
         android:text="introduction" />
-
 
 </LinearLayout>
